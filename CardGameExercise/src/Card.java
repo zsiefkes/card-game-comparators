@@ -1,15 +1,14 @@
-import java.util.ArrayList;
-import java.util.Collections;
-
 public class Card {
 	private String name; // A, 2-10, J, Q, K. use comparator to sort Aces high or low.
 	private int rank; // 1-13. use comparator to sort Aces high or low.
 	private String suit; // Spades, Hearts, Diamonds, Clubs
 
+	// note cards are initialized with a string for the suit, and an integer representing the rank (1-13).
 	public Card(String suit, int rank) {
 		this.suit = suit;
 		this.rank = rank;
 		this.assignName();
+		System.out.println("Assigned name " + this.name + " to card with rank " + this.rank);
 	}
 	
 	private void assignName() {
@@ -40,33 +39,4 @@ public class Card {
 		return this.name + " of " + this.suit;
 	}
 	
-	public static void main(String[] args) {
-		// create list of cards to test our comparators
-		ArrayList<Card> cards = new ArrayList<Card>();
-		cards.add(new Card("Clubs", 1));
-		cards.add(new Card("Hearts", 4));
-		cards.add(new Card("Diamonds", 8));
-		cards.add(new Card("Spades", 1));
-		for (Card c : cards) {
-			System.out.println(c.getDescriptor());
-		}
-		// order with aces low
-		Collections.sort(cards, new AcesLowComparator());
-		System.out.println("--------------------------");
-		for (Card c : cards) {
-			System.out.println(c.getDescriptor());
-		}
-		// order with aces high
-		Collections.sort(cards, new AcesHighComparator());
-		System.out.println("--------------------------");
-		for (Card c : cards) {
-			System.out.println(c.getDescriptor());
-		}
-		// order by suit
-		Collections.sort(cards, new SuitComparator());
-		System.out.println("--------------------------");
-		for (Card c : cards) {
-			System.out.println(c.getDescriptor());
-		}
-	}
 }
