@@ -5,7 +5,44 @@ public class CardsPlayground {
 	
 	public CardsPlayground() {
 //		this.testCardClass();
-		this.testBlackjackClass();
+//		this.testBlackjackClass();
+		this.testPokerHandClass();
+	}
+	
+	private void testFourOfAKind() {
+		ArrayList<Card> cards = new ArrayList<Card>();
+		cards.add(new Card("Spades", 5));
+		cards.add(new Card("Hearts", 5));
+		cards.add(new Card("Clubs", 5));
+		cards.add(new Card("Diamonds", 5));
+		cards.add(new Card("Diamonds", 11));
+		PokerHand handA = new PokerHand(cards);
+		handA.displayHand();
+		System.out.println(handA.hasFourOfAKind());
+		// returns 5! seems to work. let's try another.
+		ArrayList<Card> cardsB = new ArrayList<Card>();
+		cardsB.add(new Card("Spades", 1));
+		cardsB.add(new Card("Hearts", 5));
+		cardsB.add(new Card("Clubs", 5));
+		cardsB.add(new Card("Diamonds", 5));
+		cardsB.add(new Card("Diamonds", 11));
+		PokerHand handB = new PokerHand(cardsB);
+		handB.displayHand();
+		System.out.println(handB.hasFourOfAKind());
+		// returns 0. Good. one more
+		ArrayList<Card> cardsC = new ArrayList<Card>();
+		cardsC.add(new Card("Spades", 1));
+		cardsC.add(new Card("Hearts", 1));
+		cardsC.add(new Card("Clubs", 1));
+		cardsC.add(new Card("Diamonds", 1));
+		cardsC.add(new Card("Diamonds", 11));
+		PokerHand handC = new PokerHand(cardsC);
+		handC.displayHand();
+		System.out.println(handC.hasFourOfAKind());
+	}
+	
+	private void testPokerHandClass() {
+		testFourOfAKind();
 	}
 	
 	private void testBlackjackClass() {
