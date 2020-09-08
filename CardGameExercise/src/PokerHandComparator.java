@@ -10,27 +10,18 @@ public class PokerHandComparator implements Comparator<PokerHand> {
 		// should the hand checking logic live on the PokerHand class or the PokerHandComparator class?
 		// i feel like checking each hand should live on the PokerHand class itself...
 	}
-	
-	// straight flush
-	private boolean hasStraightFlush(ArrayList<Card> hand) {
-		for (Card card : hand) {
-			
-		}		
-	}
 
-	
+	// hand ranking order:
+	// straight flush
+	// four of a kind.
 	// full house
-	
 	// flush
-	
 	// straight
-	
 	// three of a kind
-	
 	// two pair
-	
 	// pair
-	
 	// high card
+	
+
 	
 }

@@ -13,22 +13,14 @@ public class PokerHand implements Hand {
 	}
 
 	
+	// straight flush
+	
 	// four of a kind. returns card rank if there is a four of a kind, otherwise returns 0.
 	public int hasFourOfAKind() {
-//		boolean hasFourOfAKind = false;
 		int rank = 0;
-		for (Card cardA : this.cards) {
+		for (Card cardA : cards) {
 			// for each card, check if there are 3 others of the same rank contained in the other hands
-			ArrayList<Card> remCards = new ArrayList<Card>();
-			for (Card c : this.cards) {
-				remCards.add(c);
-			}
-			remCards.remove(cardA);
-//			ArrayList<Card> remCards = this.cards;
-//			remCards.remove(cardA);
-			// just check hand hasn't been updated here....
-//			System.out.println("hand size should still be 5: " + this.cards.size());
-			// AE!! since we set remCards equal to this.cards, and then removed a card from remCards, it bloody removes it from this.cards as well. okay, good to know. need to add them one by one.
+			ArrayList<Card> remCards = returnHandWithoutCard(cardA);
 			// log number of matches
 			int numMatches = 0;
 			for (Card cardB : remCards) {
@@ -42,6 +34,54 @@ public class PokerHand implements Hand {
 		}		
 		return rank;
 	}
+	
+	// motivation:
+	//	ArrayList<Card> remCards = this.cards;
+	//	remCards.remove(cardA);
+		// just check hand hasn't been updated here....
+	//	System.out.println("hand size should still be 5: " + this.cards.size());
+		// AE!! since we set remCards equal to this.cards, and then removed a card from remCards, it bloody removes it from this.cards as well. okay, good to know. need to add them one by one.
+	// going to have to use this a few times, should break out to its own function...
+	private ArrayList<Card> returnHandWithoutCard(Card cardToRemove) {
+		ArrayList<Card> remCards = new ArrayList<Card>();
+		for (Card c : cards) {
+			remCards.add(c);
+		}
+		remCards.remove(cardToRemove);
+		return remCards;
+	}
+	
+	// full house
+	
+	// flush. returns string containing flush suit, if one is present, otherwise returns empty string.
+	public String hasFlush() {
+		for (Card cardA : cards) {
+			String suit = cardA.getSuit();
+			int numMatches = 0;
+			ArrayList<Card> remCards = returnHandWithoutCard(cardA);
+			for (int i = 0; i < 4; i++) {
+				if (remCards.get(i).getSuit().equalsIgnoreCase(suit)) {
+					numMatches++;
+				}
+			}
+			if (numMatches == 4) {
+				return suit;
+			}
+		}
+		return "";
+	}
+	
+	// straight
+	
+	// three of a kind
+	
+	// two pair
+	
+	// pair
+	
+	// high card
+	
+
 	
 	public int getSize() {
 		return cards.size(); // should be 5!

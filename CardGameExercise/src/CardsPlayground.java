@@ -41,8 +41,41 @@ public class CardsPlayground {
 		System.out.println(handC.hasFourOfAKind());
 	}
 	
+	private void testFlush() {
+		ArrayList<Card> cards = new ArrayList<Card>();
+		cards.add(new Card("Spades", 5));
+		cards.add(new Card("Hearts", 5));
+		cards.add(new Card("Clubs", 5));
+		cards.add(new Card("Diamonds", 5));
+		cards.add(new Card("Diamonds", 11));
+		PokerHand handA = new PokerHand(cards);
+		handA.displayHand();
+		if (handA.hasFlush().equals("")) System.out.println("no flush");
+		// good. let's try a flush.
+		ArrayList<Card> cardsB = new ArrayList<Card>();
+		cardsB.add(new Card("Spades", 1));
+		cardsB.add(new Card("Spades", 2));
+		cardsB.add(new Card("Spades", 5));
+		cardsB.add(new Card("Spades", 7));
+		cardsB.add(new Card("Spades", 11));
+		PokerHand handB = new PokerHand(cardsB);
+		handB.displayHand();
+		System.out.println(handB.hasFlush());
+		// returns 0. Good. one more
+		ArrayList<Card> cardsC = new ArrayList<Card>();
+		cardsC.add(new Card("Clubs", 1));
+		cardsC.add(new Card("Clubs", 2));
+		cardsC.add(new Card("Clubs", 3));
+		cardsC.add(new Card("Clubs", 12));
+		cardsC.add(new Card("Clubs", 11));
+		PokerHand handC = new PokerHand(cardsC);
+		handC.displayHand();
+		System.out.println(handC.hasFlush());
+	}
+	
 	private void testPokerHandClass() {
-		testFourOfAKind();
+//		testFourOfAKind();
+		testFlush();
 	}
 	
 	private void testBlackjackClass() {
