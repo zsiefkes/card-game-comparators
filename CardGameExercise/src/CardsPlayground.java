@@ -9,6 +9,145 @@ public class CardsPlayground {
 		this.testPokerHandClass();
 	}
 	
+	private void testPokerHandClass() {
+//		testFourOfAKind();
+//		testThreeOfAKind();
+//		testTwoPair();
+//		testPair();
+//		testFlush();
+		testFullHouse();
+	}
+	
+	private void testFullHouse() {
+		ArrayList<Card> cards = new ArrayList<Card>();
+		cards.add(new Card("Spades", 11));
+		cards.add(new Card("Hearts", 11));
+		cards.add(new Card("Clubs", 10));
+		cards.add(new Card("Diamonds", 10));
+		cards.add(new Card("Diamonds", 1));
+		PokerHand handA = new PokerHand(cards);
+		handA.displayHand();
+		System.out.println(handA.hasFullHouse());
+		
+		ArrayList<Card> cardsB = new ArrayList<Card>();
+		cardsB.add(new Card("Spades", 1));
+		cardsB.add(new Card("Hearts", 3));
+		cardsB.add(new Card("Clubs", 1));
+		cardsB.add(new Card("Diamonds", 1));
+		cardsB.add(new Card("Diamonds", 3));
+		PokerHand handB = new PokerHand(cardsB);
+		handB.displayHand();
+		System.out.println(handB.hasFullHouse());
+		
+		ArrayList<Card> cardsC = new ArrayList<Card>();
+		cardsC.add(new Card("Spades", 5));
+		cardsC.add(new Card("Hearts", 11));
+		cardsC.add(new Card("Clubs", 11));
+		cardsC.add(new Card("Diamonds", 5));
+		cardsC.add(new Card("Diamonds", 11));
+		PokerHand handC = new PokerHand(cardsC);
+		handC.displayHand();
+		System.out.println(handC.hasFullHouse());
+	}
+	
+	private void testTwoPair() {
+		ArrayList<Card> cards = new ArrayList<Card>();
+		cards.add(new Card("Spades", 11));
+		cards.add(new Card("Hearts", 11));
+		cards.add(new Card("Clubs", 10));
+		cards.add(new Card("Diamonds", 10));
+		cards.add(new Card("Diamonds", 1));
+		PokerHand handA = new PokerHand(cards);
+		handA.displayHand();
+		System.out.println(handA.hasTwoPair());
+		
+		ArrayList<Card> cardsB = new ArrayList<Card>();
+		cardsB.add(new Card("Spades", 1));
+		cardsB.add(new Card("Hearts", 3));
+		cardsB.add(new Card("Clubs", 3));
+		cardsB.add(new Card("Diamonds", 1));
+		cardsB.add(new Card("Diamonds", 11));
+		PokerHand handB = new PokerHand(cardsB);
+		handB.displayHand();
+		System.out.println(handB.hasTwoPair());
+		
+		ArrayList<Card> cardsC = new ArrayList<Card>();
+		cardsC.add(new Card("Spades", 1));
+		cardsC.add(new Card("Hearts", 1));
+		cardsC.add(new Card("Clubs", 1));
+		cardsC.add(new Card("Diamonds", 5));
+		cardsC.add(new Card("Diamonds", 11));
+		PokerHand handC = new PokerHand(cardsC);
+		handC.displayHand();
+		System.out.println(handC.hasTwoPair());
+	}
+
+	private void testPair() {
+		ArrayList<Card> cards = new ArrayList<Card>();
+		cards.add(new Card("Spades", 11));
+		cards.add(new Card("Hearts", 11));
+		cards.add(new Card("Clubs", 11));
+		cards.add(new Card("Diamonds", 2));
+		cards.add(new Card("Diamonds", 1));
+		PokerHand handA = new PokerHand(cards);
+		handA.displayHand();
+		System.out.println(handA.hasPair());
+
+		ArrayList<Card> cardsB = new ArrayList<Card>();
+		cardsB.add(new Card("Spades", 1));
+		cardsB.add(new Card("Hearts", 2));
+		cardsB.add(new Card("Clubs", 3));
+		cardsB.add(new Card("Diamonds", 4));
+		cardsB.add(new Card("Diamonds", 11));
+		PokerHand handB = new PokerHand(cardsB);
+		handB.displayHand();
+		System.out.println(handB.hasPair());
+
+		ArrayList<Card> cardsC = new ArrayList<Card>();
+		cardsC.add(new Card("Spades", 1));
+		cardsC.add(new Card("Hearts", 1));
+		cardsC.add(new Card("Clubs", 2));
+		cardsC.add(new Card("Diamonds", 5));
+		cardsC.add(new Card("Diamonds", 11));
+		PokerHand handC = new PokerHand(cardsC);
+		handC.displayHand();
+		System.out.println(handC.hasPair());
+	}
+	
+	
+	private void testThreeOfAKind() {
+		ArrayList<Card> cards = new ArrayList<Card>();
+		cards.add(new Card("Spades", 11));
+		cards.add(new Card("Hearts", 11));
+		cards.add(new Card("Clubs", 11));
+		cards.add(new Card("Diamonds", 2));
+		cards.add(new Card("Diamonds", 11));
+		PokerHand handA = new PokerHand(cards);
+		handA.displayHand();
+		System.out.println(handA.hasThreeOfAKind());
+		// returns 5! seems to work. let's try another.
+		ArrayList<Card> cardsB = new ArrayList<Card>();
+		cardsB.add(new Card("Spades", 1));
+		cardsB.add(new Card("Hearts", 5));
+		cardsB.add(new Card("Clubs", 5));
+		cardsB.add(new Card("Diamonds", 5));
+		cardsB.add(new Card("Diamonds", 11));
+		PokerHand handB = new PokerHand(cardsB);
+		handB.displayHand();
+		System.out.println(handB.hasThreeOfAKind());
+		// returns 0. Good. one more
+		ArrayList<Card> cardsC = new ArrayList<Card>();
+		cardsC.add(new Card("Spades", 1));
+		cardsC.add(new Card("Hearts", 1));
+		cardsC.add(new Card("Clubs", 2));
+		cardsC.add(new Card("Diamonds", 5));
+		cardsC.add(new Card("Diamonds", 11));
+		PokerHand handC = new PokerHand(cardsC);
+		handC.displayHand();
+		System.out.println(handC.hasThreeOfAKind());
+	}
+	
+	
 	private void testFourOfAKind() {
 		ArrayList<Card> cards = new ArrayList<Card>();
 		cards.add(new Card("Spades", 5));
@@ -73,11 +212,7 @@ public class CardsPlayground {
 		System.out.println(handC.hasFlush());
 	}
 	
-	private void testPokerHandClass() {
-//		testFourOfAKind();
-		testFlush();
-	}
-	
+
 	private void testBlackjackClass() {
 		ArrayList<BlackjackHand> hands = new ArrayList<BlackjackHand>();
 		// arraylist to hold the cards for our blackjack hand

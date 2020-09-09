@@ -1,4 +1,5 @@
 public class Card {
+	
 	private String name; // A, 2-10, J, Q, K. use comparator to sort Aces high or low.
 	private int rank; // 1-13. use comparator to sort Aces high or low.
 	private String suit; // Spades, Hearts, Diamonds, Clubs
@@ -8,7 +9,7 @@ public class Card {
 		this.suit = suit;
 		this.rank = rank;
 		this.assignName();
-		System.out.println("Assigned name " + this.name + " to card with rank " + this.rank);
+		// System.out.println("Assigned name " + this.name + " to card with rank " + this.rank);
 	}
 	
 	private void assignName() {
