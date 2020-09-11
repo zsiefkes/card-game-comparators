@@ -15,7 +15,40 @@ public class CardsPlayground {
 //		testTwoPair();
 //		testPair();
 //		testFlush();
-		testFullHouse();
+//		testFullHouse();
+		testStraight();
+	}
+	
+	private void testStraight() {
+		ArrayList<Card> cards = new ArrayList<Card>();
+		cards.add(new Card("Spades", 11));
+		cards.add(new Card("Hearts", 11));
+		cards.add(new Card("Clubs", 10));
+		cards.add(new Card("Diamonds", 10));
+		cards.add(new Card("Diamonds", 1));
+		PokerHand handA = new PokerHand(cards);
+		handA.displayHand();
+		System.out.println(handA.hasStraight());
+		
+		ArrayList<Card> cardsB = new ArrayList<Card>();
+		cardsB.add(new Card("Spades", 1));
+		cardsB.add(new Card("Hearts", 2));
+		cardsB.add(new Card("Clubs", 3));
+		cardsB.add(new Card("Diamonds", 4));
+		cardsB.add(new Card("Spades", 5));
+		PokerHand handB = new PokerHand(cardsB);
+		handB.displayHand();
+		System.out.println(handB.hasStraight());
+		
+		ArrayList<Card> cardsC = new ArrayList<Card>();
+		cardsC.add(new Card("Spades", 10));
+		cardsC.add(new Card("Hearts", 11));
+		cardsC.add(new Card("Clubs", 12));
+		cardsC.add(new Card("Diamonds", 13));
+		cardsC.add(new Card("Diamonds", 1));
+		PokerHand handC = new PokerHand(cardsC);
+		handC.displayHand();
+		System.out.println(handC.hasStraight());
 	}
 	
 	private void testFullHouse() {

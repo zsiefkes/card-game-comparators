@@ -1,7 +1,5 @@
 import java.util.ArrayList;
 
-import org.graalvm.compiler.phases.common.RemoveValueProxyPhase;
-
 public class PokerHand implements Hand {
 	private ArrayList<Card> cards = new ArrayList<>();
 
@@ -143,15 +141,56 @@ public class PokerHand implements Hand {
 	
 	// straight. return int representing rank of highest card in straight.
 	public int hasStraight() {
-		// for check card, check if the remaining four cards contain the card that immediately follows it
-		for (Card cardA : cards) {
-			int rankA = cardA.getRank();
+		// integer to return
+//		int topRank = 0;
+		int topRank = 0;
+		//order the cards using aces high.
+		// ah shit ... aces can be low, too. need to check both!
+		ArrayList<Card> orderedAcesHigh = new ArrayList<Card>();
+		for (Card c : cards) {
+			orderedAcesHigh.add(c);
 		}
+		orderedAcesHigh.sort(new AcesHighComparator());
+		// check if each successive one is one higher in rank than the previous
+		for (int i = 0; i < 4; i++) {
+			int difference = orderedAcesHigh.get(i + 1).getRank() - orderedAcesHigh.get(i).getRank();
+			if (difference != 1 && difference != -12) {
+				// difference of -12 implies king then ace.
+				// ugh this is a super messy way to patch this up.
+				break;
+			}
+			if (i == 3) {
+				// hand is a straight. return rank of highest ranking card
+				topRank = orderedAcesHigh.get(i + 1).getRank();
+				if (topRank == 1) {
+					topRank = 14;
+					return topRank;
+				}
+			}
+		}
+		
+		// run same check for aces low.
+		ArrayList<Card> orderedAcesLow = new ArrayList<Card>();
+		for (Card c : cards) {
+			orderedAcesLow.add(c);
+		}
+		orderedAcesLow.sort(new AcesLowComparator());
+		// check if each successive one is one higher in rank than the previous
+		for (int i = 0; i < 4; i++) {
+			if (orderedAcesLow.get(i + 1).getRank() - orderedAcesLow.get(i).getRank() != 1) {
+				// hand is not a straight.
+				break;
+			}
+			if (i == 3) {
+				// hand is a straight. return rank of highest ranking card
+				topRank = orderedAcesLow.get(i + 1).getRank();
+			}
+		}
+		return topRank;
+		
 	}
 
 	// high card
-	
-
 	
 	public int getSize() {
 		return cards.size(); // should be 5!
