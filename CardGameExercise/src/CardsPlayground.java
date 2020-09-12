@@ -16,7 +16,40 @@ public class CardsPlayground {
 //		testPair();
 //		testFlush();
 //		testFullHouse();
-		testStraight();
+//		testStraight();
+		testStraightFlush();
+	}
+	
+	private void testStraightFlush() {
+		ArrayList<Card> cards = new ArrayList<Card>();
+		cards.add(new Card("Diamonds", 11));
+		cards.add(new Card("Diamonds", 12));
+		cards.add(new Card("Diamonds", 10));
+		cards.add(new Card("Diamonds", 13));
+		cards.add(new Card("Diamonds", 1));
+		PokerHand handA = new PokerHand(cards);
+		handA.displayHand();
+		System.out.println(handA.hasStraightFlush());
+		
+		ArrayList<Card> cardsB = new ArrayList<Card>();
+		cardsB.add(new Card("Spades", 1));
+		cardsB.add(new Card("Spades", 2));
+		cardsB.add(new Card("Spades", 3));
+		cardsB.add(new Card("Spades", 4));
+		cardsB.add(new Card("Spades", 5));
+		PokerHand handB = new PokerHand(cardsB);
+		handB.displayHand();
+		System.out.println(handB.hasStraightFlush());
+		
+		ArrayList<Card> cardsC = new ArrayList<Card>();
+		cardsC.add(new Card("Spades", 2));
+		cardsC.add(new Card("Hearts", 3));
+		cardsC.add(new Card("Clubs", 4));
+		cardsC.add(new Card("Diamonds", 5));
+		cardsC.add(new Card("Diamonds", 6));
+		PokerHand handC = new PokerHand(cardsC);
+		handC.displayHand();
+		System.out.println(handC.hasStraightFlush());
 	}
 	
 	private void testStraight() {

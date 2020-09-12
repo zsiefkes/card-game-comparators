@@ -14,7 +14,19 @@ public class PokerHand implements Hand {
 
 	
 	// straight flush
-	
+	// returns rank of highest card in straight if straight flush is present, otherwise returns 0.
+	public int hasStraightFlush() {
+		// check for flush
+		String flushSuit = hasFlush();
+		// if no flush present, return 0
+		if (flushSuit.equals("")) {
+			return 0;
+		} else {
+			// check for straight
+			int straightRanking = hasStraight();
+			return straightRanking;
+		}
+	}
 	
 	// returns card rank if there is a N of a kind, otherwise returns 0.
 	// generalized to be able to check for 2, 3 or 4 of a kind.
@@ -160,12 +172,9 @@ public class PokerHand implements Hand {
 				break;
 			}
 			if (i == 3) {
-				// hand is a straight. return rank of highest ranking card
+				// hand is a straight. return rank of highest ranking card. note this will be 1 for an ace high flush.
 				topRank = orderedAcesHigh.get(i + 1).getRank();
-				if (topRank == 1) {
-					topRank = 14;
-					return topRank;
-				}
+				return topRank;
 			}
 		}
 		
