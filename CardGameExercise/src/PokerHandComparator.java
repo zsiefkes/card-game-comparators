@@ -1,16 +1,30 @@
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class PokerHandComparator implements Comparator<PokerHand> {
 
 	public int compare(PokerHand a, PokerHand b) {
-		// oosh! let's do it! far out lol
-		// fuck lol where do we even start?
-		// i guess for each type, starting at the highest hand, check if the cards fit the criteria
-		// send the arraylist of cards to each of the methods so we're not unnecessarily invoking the pokerHand.getCards() method over and over
-		// should the hand checking logic live on the PokerHand class or the PokerHandComparator class?
-		// i feel like checking each hand should live on the PokerHand class itself...
+		// now that we've set everything we need as instance variables, we can just go ahead and compare directly from the PokerHand class instance variables.
+		
+		// compare hand ranks. flush beats three of a kind, etc.
+		int handRankDiff = a.getHandRank() - b.getHandRank();
+		if (handRankDiff != 0) {
+			return handRankDiff;
+			
+		} else {
+			// if the hands are the same, check the rank within the hand. eg. pair aces beats pair 8s.
+			int handHighCardDiff = a.gethandhighCardRank() - b.gethandhighCardRank();
+			if (handHighCardDiff != 0) {
+				return handHighCardDiff;
+				
+			} else {
+				// we have a tie. check high card to break the tie. if high cards are the same, we have an overall tie of hands so can return 0.
+				return a.getHighCardRank() - b.getHighCardRank();
+			}
+		}
+		
 	}
-
+	
 	// hand ranking order:
 	// straight flush
 	// four of a kind.
@@ -21,7 +35,4 @@ public class PokerHandComparator implements Comparator<PokerHand> {
 	// two pair
 	// pair
 	// high card
-	
-
-	
 }

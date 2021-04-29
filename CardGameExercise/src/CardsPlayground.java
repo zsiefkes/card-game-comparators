@@ -1,12 +1,13 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 public class CardsPlayground {
 	
 	public CardsPlayground() {
-//		this.testCardClass();
-//		this.testBlackjackClass();
-		this.testPokerHandClass();
+//		testCardClass();
+//		testBlackjackClass();
+		testPokerHandClass();
 	}
 	
 	private void testPokerHandClass() {
@@ -17,7 +18,95 @@ public class CardsPlayground {
 //		testFlush();
 //		testFullHouse();
 //		testStraight();
-		testStraightFlush();
+//		testStraightFlush();
+//		testHighCard();
+		testPokerHandComparator();
+	}
+	
+	private void testPokerHandComparator() {
+		ArrayList<Card> cards = new ArrayList<Card>();
+		cards.add(new Card("Diamonds", 11));
+		cards.add(new Card("Diamonds", 12));
+		cards.add(new Card("Diamonds", 10));
+		cards.add(new Card("Diamonds", 13));
+		cards.add(new Card("Diamonds", 1));
+		PokerHand handA = new PokerHand(cards);
+		handA.displayHand();
+		handA.getHandDescription();
+		
+		ArrayList<Card> cardsB = new ArrayList<Card>();
+		cardsB.add(new Card("Spades", 11));
+		cardsB.add(new Card("Spades", 2));
+		cardsB.add(new Card("Spades", 3));
+		cardsB.add(new Card("Spades", 4));
+		cardsB.add(new Card("Spades", 5));
+		PokerHand handB = new PokerHand(cardsB);
+		handB.displayHand();
+		handB.getHandDescription();
+		
+		ArrayList<Card> cardsC = new ArrayList<Card>();
+		cardsC.add(new Card("Spades", 2));
+		cardsC.add(new Card("Hearts", 3));
+		cardsC.add(new Card("Clubs", 4));
+		cardsC.add(new Card("Diamonds", 5));
+		cardsC.add(new Card("Diamonds", 6));
+		PokerHand handC = new PokerHand(cardsC);
+		handC.displayHand();
+		handC.getHandDescription();
+		
+		ArrayList<Card> cardsD = new ArrayList<Card>();
+		cardsD.add(new Card("Spades", 2));
+		cardsD.add(new Card("Hearts", 3));
+		cardsD.add(new Card("Clubs", 4));
+		cardsD.add(new Card("Diamonds", 5));
+		cardsD.add(new Card("Diamonds", 1));
+		PokerHand handD = new PokerHand(cardsD);
+		handD.displayHand();
+		handD.getHandDescription();
+		
+		// order the hands and print.
+		ArrayList<PokerHand> hands = new ArrayList<PokerHand>();
+		hands.add(handA);
+		hands.add(handB);
+		hands.add(handC);
+		hands.add(handD);
+		hands.sort(new PokerHandComparator());
+		System.out.println("----- Ordered hands -----");
+		for (PokerHand hand : hands) {
+			hand.getHandDescription();
+		}
+	}
+	
+	private void testHighCard() {
+		ArrayList<Card> cards = new ArrayList<Card>();
+		cards.add(new Card("Diamonds", 11));
+		cards.add(new Card("Diamonds", 12));
+		cards.add(new Card("Diamonds", 10));
+		cards.add(new Card("Diamonds", 13));
+		cards.add(new Card("Diamonds", 1));
+		PokerHand handA = new PokerHand(cards);
+		handA.displayHand();
+		System.out.println(handA.findHighCard(cards));
+		
+		ArrayList<Card> cardsB = new ArrayList<Card>();
+		cardsB.add(new Card("Spades", 11));
+		cardsB.add(new Card("Spades", 2));
+		cardsB.add(new Card("Spades", 3));
+		cardsB.add(new Card("Spades", 4));
+		cardsB.add(new Card("Spades", 5));
+		PokerHand handB = new PokerHand(cardsB);
+		handB.displayHand();
+		System.out.println(handB.findHighCard(cardsB));
+		
+		ArrayList<Card> cardsC = new ArrayList<Card>();
+		cardsC.add(new Card("Spades", 2));
+		cardsC.add(new Card("Hearts", 3));
+		cardsC.add(new Card("Clubs", 4));
+		cardsC.add(new Card("Diamonds", 5));
+		cardsC.add(new Card("Diamonds", 6));
+		PokerHand handC = new PokerHand(cardsC);
+		handC.displayHand();
+		System.out.println(handC.findHighCard(cardsC));
 	}
 	
 	private void testStraightFlush() {
